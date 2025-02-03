@@ -1,0 +1,381 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello, World!</title>
+  <link rel="logo" href="{{ url_for('static', filename='logo.jpg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+
+<body>
+  <!-- Toast Message -->
+  <div id="toast" class="toast">
+    <span id="toast-message"></span>
+  </div>
+  <!--Update Password Form-->
+  <div class="form-container update-password">
+    <div class="info">
+      <h1>Update Password</h1>
+    </div>
+    <hr>
+    <form id="update-password-form">
+      <div class="form-group">
+        <label for="update-password-username">Username</label>
+        <input type="text" id="update-password-username" name="username" />
+      </div>
+      <div class="form-group">
+        <label for="old-password">Old Password</label>
+        <input type="password" id="old_password" name="password" />
+      </div>
+      <div class="form-group">
+        <label for="new-password">New Password</label>
+        <input type="password" id="new_password" name="new_password" />
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" />
+      </div>
+      <div class="submit">
+        <input type="submit" value="Update Password" />
+        <div class="loading-icon" id="loading-icon11"></div>
+      </div>
+    </form>
+    <p class="signup-link">
+      <a id="gobackto-password-to-update-window">Go Back..</a>
+      <a id="update-password-sign-in">Sign in</a>
+    </p>
+  </div>
+  <!-- Update Email Form -->
+  <div class=" form-container update-email">
+    <div class="info">
+      <h1>Update Email</h1>
+    </div>
+    <hr>
+    <form id="update-email-form">
+      <div class="form-group ">
+        <label for="old-email">Old Email</label>
+        <input type="email" id="old-email" name="email" />
+      </div>
+      <div class="form-group">
+        <label for="new-email">New Email</label>
+        <input type="email" id="new-email" name="new_email" />
+      </div>
+      <div class="form-group">
+        <label for="update-email-password">Password</label>
+        <input type="password" id="update-email-password" name="password" />
+      </div>
+      <div class="submit">
+        <input type="submit" value="Update Email" />
+        <div class="loading-icon" id="loading-icon10"></div>
+      </div>
+    </form>
+    <p class="signup-link">
+      <a id="gobackto-email-to-update-window">Go Back..</a>
+      <a id="update-email-sign-in">Sign in</a>
+    </p>
+  </div>
+  <!-- Update Username Form -->
+  <div class="form-container update-username">
+    <div class="info">
+      <h1>Update Username</h1>
+    </div>
+    <hr>
+    <form id="update-username-form">
+      <div class="form-group">
+        <label for="old-username">Old Username</label>
+        <input type="text" id="old-username" name="username" />
+      </div>
+      <div class="form-group">
+        <label for="new-username">New Username</label>
+        <input type="text" id="new-username" name="new_username" />
+      </div>
+      <div class="form-group">
+        <label for="update-username-password">Password</label>
+        <input type="password" id="update-username-password" name="password" />
+      </div>
+      <div class="submit">
+
+        <input type="submit" value="Update Username" />
+        <div class="loading-icon" id="loading-icon9"></div>
+      </div>
+    </form>
+    <p class="signup-link">
+      <a id="gobackto-username-to-update-window">Go Back..</a>
+      <a id="update-username-sign-in">Sign in</a>
+  </div>
+
+  <!--update window-->
+  <div class="form-container update-window">
+    <div class="info">
+      <h1>update details</details>
+      </h1>
+    </div>
+    <hr>
+    <div class="get-details">
+      <p>Username </p><button class="getbutton" id="update-username">Get</button>
+    </div>
+    <div class="get-details">
+      <p>Email </p><button class="getbutton" id="update-email">Get</button>
+    </div>
+    <div class="get-details">
+      <p>Change Password </p><button class="getbutton" id="update-password">Get</button>
+    </div>
+    <p class="signup-link">
+      <a id="gobacktosign-in">Go Back..</a>
+      <a id="update-window-sign-in">Sign in</a>
+    </p>
+  </div>
+
+  <!-- Reset Password Form -->
+  <div class="form-container reset-password">
+    <div class="info">
+      <h1>Reset Password</h1>
+    </div>
+    <hr>
+    <form id="reset-password-form">
+      <div class="form-group">
+        <label for="new-password">New Password</label>
+        <input type="password" id="new-password" name="password" />
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm_password" />
+      </div>
+      <div class="submit">
+        <input type="submit" value="Reset Password" />
+        <div class="loading-icon" id="loading-icon8"></div>
+      </div>
+    </form>
+  </div>
+
+  <!-- OTP Verification Form -->
+  <div class="form-container opt-window">
+    <div class="info">
+      <h1>Verify OTP</h1>
+    </div>
+    <hr>
+    <form id="verify-otp-form">
+      <div class="form-group">
+        <label for="otp">Enter OTP</label>
+        <input type="text" id="otp" name="otp" />
+      </div>
+      <div class="submit">
+        <input type="submit" value="Verify OTP" />
+        <div class="loading-icon" id="loading-icon7"></div>
+      </div>
+      <p class="signup-link">
+        <a id="gobacktoforgotpassword">Go back</a>
+      </p>
+    </form>
+  </div>
+  <!-- Forgot Password Form -->
+  <div class="form-container forgot-password-window">
+    <div class="info">
+      <h1>Forgot Password</h1>
+    </div>
+    <hr>
+    <form id="forgot-password-form">
+      <div class="form-group">
+        <label for="email-reset">Enter your email</label>
+        <input type="email" id="email-reset" name="email" />
+      </div>
+      <div class="submit">
+        <input type="submit" value="Send OTP" />
+        <div class="loading-icon" id="loading-icon6"></div>
+      </div>
+    </form>
+    <p class="signup-link">
+      <a id="gobacktoforgotwindow">Go back.</a><a id="forgot-password-link">Sign in</a>
+    </p>
+  </div>
+
+  <!-- Forgot Email Form -->
+  <div class="form-container get-email">
+    <div class="info">
+      <h1>Forgot Email</h1>
+    </div>
+    <hr>
+    <form id="get-email-form">
+      <div class="form-group">
+        <label for="get-email-username">Username</label>
+        <input type="text" id="get-email-username" name="get-email-username" />
+      </div>
+      <div class="form-group">
+        <label for="get-email-password">Password</label>
+        <input type="password" id="get-email-password" name="get-email-password" />
+      </div>
+      <div class="form-group get-email-from-database-label">
+        Email : <p id="get-email-from-database"></p>
+      </div>
+      <div class="submit">
+        <input type="submit" value="Get Email" />
+        <div class="loading-icon" id="loading-icon5"></div>
+      </div>
+    </form>
+    <p class="signup-link">
+      <a id="forgot-email-link">Go Back..</a>
+      <a id="get-email-sign-in">Sign in</a>
+
+  </div>
+
+
+
+  <!-- Forgot Username Form -->
+  <div class="form-container get-username">
+    <div class="info">
+      <h1>Forgot Username
+      </h1>
+    </div>
+    <hr>
+    <form id="get-username-form">
+      <div class="form-group">
+        <label for="get-username-email">Email</label>
+        <input type="email" id="get-username-email" name="get-username-email" />
+      </div>
+      <div class="form-group">
+        <label for="get-username-password">Password</label>
+        <input type="password" id="get-username-password" name="get-username-password">
+      </div>
+      <div class="form-group get-username-from-database-label">
+        Username : <p id="get-username-from-database"></p>
+      </div>
+      <div class="submit">
+
+        <input type="submit" value="Get Username" />
+        <div class="loading-icon" id="loading-icon4"></div>
+      </div>
+    </form>
+    <p class="signup-link">
+      <a id="forgot-username-link">Go Back..</a>
+      <a id="get-username-sign-in">Sign in</a>
+    </p>
+  </div>
+
+  <!-- Forgot Details Form -->
+  <div class="form-container forgot-window">
+    <div class="info">
+      <h1>Forgot details</details>
+      </h1>
+    </div>
+    <hr>
+    <div class="get-details">
+      <p>Username </p><button class="getbutton" id="get-username">Get</button>
+    </div>
+    <div class="get-details">
+      <p>Email </p><button class="getbutton" id="get-email">Get</button>
+    </div>
+    <div class="get-details">
+      <p>Password </p><button class="getbutton" id="get-password">Get</button>
+    </div>
+    <p class="signup-link">
+      <a id="forgot-window-sign-in">Sign in</a>
+    </p>
+  </div>
+
+  <!-- Sign up Form -->
+  <div class="form-container form-3">
+
+    <div class="info">
+      <h1>Set Your Password</h1>
+    </div>
+    <hr>
+    <form id="sign-up-2">
+      <div class="h2">
+        <h2>Password</h2>
+      </div>
+
+      <div class="form-group">
+        <label for="pass" id="passhr">Password</label>
+        <input id="pass" type="password" name="password_1" />
+
+      </div>
+
+      <div class="form-group">
+        <label for="pass2">Confirm Password</label>
+        <input id="pass2" type="text" name="password_2" />
+      </div>
+      <div class="submit">
+        <input type="submit" id="btn" value="Sign Up" />
+        <div class="loading-icon" id="loading-icon3"></div>
+      </div>
+      <input type="hidden" id="username-in-form-3" name="username" />
+      <input type="hidden" id="email-in-form-3" name="email" />
+    </form>
+
+    <p class="signup-link">
+      <a id="register-register-in">Go Back .</a>
+      <a id="login-in">Sign in</a>
+    </p>
+  </div>
+
+  <!-- Sign up Form -->
+  <div class="form-container form-2">
+
+    <div class="info">
+      <h1>Welcome</h1>
+      <h2>Submit your info</h2>
+    </div>
+    <hr>
+
+    <form id="sign-up-1">
+      <div class="h2">
+        <h2>Register</h2>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Username</label>
+        <input type="text" id="name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email">
+      </div>
+
+      <div class="submit">
+        <input type="submit" id="getstarted">
+        <div class="loading-icon" id="loading-icon2"></div>
+      </div>
+    </form>
+
+    <p class="signup-link">
+      Already a member? <a id="register-login-in">Sign in</a>
+    </p>
+  </div>
+  <!-- Login Form -->
+  <div class="form-container form-1">
+    <div class="info">
+      <h1 class="h1">Welcome</h1>
+      <p>Enter your login details</p>
+    </div>
+    <hr />
+    <form id="log-in-1">
+      <h1 class="h2">Login</h1>
+
+      <div class="form-group">
+        <label for="useroremailin">Username or Email</label>
+        <input type="text" id="useroremailin" name="useroremailin" />
+      </div>
+
+      <div class="form-group">
+        <label for="passin">Password</label>
+        <input type="password" id="passin" name="passin" />
+      </div>
+
+      <div class="submit">
+        <input type="submit" name="login_user" value="Login" />
+        <div class="loading-icon" id="loading-icon1"></div>
+      </div>
+    </form>
+    <div class="signup-link">
+      <p>Not yet a member? <a id="go-to-signup">Sign up</a><br>
+        <a id="update-details">Update Details.. </a> <a id="forgot-details">Forgot Details..</a>
+      </p>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</body>
+
+</html>
