@@ -3,6 +3,7 @@ import secrets
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from pymongo import MongoClient
 from werkzeug.security import check_password_hash, generate_password_hash
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -182,10 +183,18 @@ def update_password():
         return jsonify({'status': 'error', 'message': 'Username not found!'})
     
 
-# Home page after logi
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in session:
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+# Home page after login
 @app.route('/home')
+@login_required
 def home():
-    print('Home')
     return render_template('home.html')
 
 @app.route('/profile')
@@ -201,4 +210,3 @@ def logout():
 if __name__ == '__main__':
     app.run(port=8080)
     app.run(debug=True)
-    
