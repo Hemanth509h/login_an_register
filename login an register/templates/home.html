@@ -18,7 +18,6 @@
         /* Body styling */
         body {
             background-color: #121212;
-            color: #8affa3;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -44,21 +43,35 @@
 
         /* Navigation bar styling */
         nav {
-            width: 95%;
+            width: 80%;
+            height: 60px;
             background-color: #272727;
             text-align: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 5px;
-            padding-left: px;
+            padding: 5px;
             border-radius: 20px;
-            margin-top: 20px;
+            margin-top: 30px;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        .menu {
+            display: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Logo styling */
         .logo {
-            padding-left: 15px;
+            padding-left: 5%;
             display: flex;
             align-items: center;
         }
@@ -68,6 +81,12 @@
             height: auto;
             margin-right: 10px;
             border-radius: 50%;
+        }
+
+        .logo-name {
+            color: #8affa3;
+            font-size: 20px;
+            letter-spacing: 2px;
         }
 
         nav ul {
@@ -92,19 +111,57 @@
 
         .profile {
             padding-right: 15px;
-
         }
 
-        .logout-link {
+        .logout-link,
+        .profile-link {
             color: red;
             text-decoration: none;
         }
 
-        .logout-link:hover {
-            color: #ff3333;
+        .profile-icon {
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
         }
 
-        /* Container for main content */
+        .profile-icon-in-links {
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            background-color: rgba(127, 133, 133, 0.733);
+            border-radius: 50%;
+        }
+
+        .profile-data {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Updated "links-in-profileicon" styling */
+        .links-in-profileicon {
+            width: 370px;
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            top: 100px;
+            right: 10%;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .profile:hover .links-in-profileicon {
+            visibility: visible;
+            opacity: 1;
+        }
+
         .container {
             width: 400px;
             padding: 40px;
@@ -161,6 +218,45 @@
         .toast.error {
             background-color: #F44336;
         }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .logo-name {
+                font-size: 18px;
+            }
+
+            .menu {
+                display: block;
+                cursor: pointer;
+                font-size: 30px;
+                color: #8affa3;
+                padding-right: 5%;
+            }
+
+            input[type="checkbox"]:checked~.nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100px;
+                width: 80%;
+                background-color: #272727;
+                border-radius: 20px;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .container {
+                width: 80%;
+            }
+
+            .links-in-profileicon {
+                width: 100%;
+                right: 0;
+            }
+        }
     </style>
 </head>
 
@@ -168,29 +264,45 @@
     <!-- Navigation bar -->
     <nav id="navbar">
         <div class="logo">
-            <img src="logo.jpg" />
-            <h2>P Hemanth Kumar</h2>
+            <img src="{{ url_for('static', filename='logo.jpg') }}" />
+            <h2 class="logo-name">P Hemanth Kumar</h2>
         </div>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-        <div class="profile" id="profile">
-            <div class="profile-icon" id="profileIcon">
-                <!-- Profile icon SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                </svg>
-            </div>
-            <div class="logout-button" id="logoutButton">
-                <!-- Logout link -->
-                <a href="/logout" class="logout-link">Logout</a>
+        <input type="checkbox" id="menu-toggle">
+        <label class="menu" for="menu-toggle">☰</label>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <div class="profile" id="profile">
+                <div class="profile-icon" id="profileIcon">
+                    <!-- Profile icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+                <div class="links-in-profileicon" id="links-in-profileicon">
+                    <div class="profile-data">
+                        <div class="profile-icon-in-links">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                            </svg>
+                        </div>
+                        <h4 id="show-username"></h4>
+                        <h4 id="show-email"></h4>
+                        <a href="/logout" class="logout-link">Logout</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>
+
+
     <div id="toast" class="toast">
         <span id="toast-message"></span>
     </div>
@@ -202,14 +314,16 @@
             <p id="username"></p>
         </div>
     </section>
-<script>
-    fetch('/profile')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("username").innerText = `Welcome, ${data.username}`;
-        })
-        .catch(error => console.error('Error:', error));
-</script>
+    <script>
+        fetch('/profile')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("username").innerText = `Welcome, ${data.username}`;
+                document.getElementById("show-username").innerText = `UserName : ${data.username}`;
+                document.getElementById("show-email").innerText = `Email : ${data.email}`;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
 </body>
 
 </html>
